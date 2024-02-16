@@ -39,7 +39,7 @@ if(isset($_GET["clear"])){
         </div>
             <div class="separator">
             </div>
-            <div class="list-tasks">
+        <div class="list-tasks">
             <?php
                 if(isset($_SESSION["tasks"])){
                     echo "<ul>";
@@ -50,10 +50,10 @@ if(isset($_GET["clear"])){
                 }
                 
             ?>
-        <form action="" method="get">
-            <input type="hidden" name="clear" value="clear">
-            <button type="submit" class="btn-clear">Apagar Tarefa</button>
-        </form>
+            <form action="" method="get">
+                <input type="hidden" name="clear" value="clear">
+                <button type="submit" class="btn-clear">Apagar Tarefa</button>
+            </form>
         </div>
         
         <div class="footer">
