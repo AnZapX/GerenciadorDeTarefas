@@ -1,11 +1,29 @@
+<?php
+session_start();
+
+//Se não houver esse 'session["tasks"]' ele vai criar um
+if(!isset($_SESSION["tasks"])){
+    $_SESSION["tasks"] = array();
+}
+
+//Coloca o que receber do formulario($_GET["task_name"]) no session tasks
+//Unset vai eliminar o lixo que restar no formulário
+if(isset($_GET["task_name"]) && $_GET["task_name"] != ""){
+    array_push($_SESSION["tasks"], $_GET["task_name"]);
+    unset($_GET["task_name"]);
+}
+if(isset($_GET["clear"])){
+    unset($_SESSION["tasks"]);
+}
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-    <title>Gerenciador de Tarefas</title>
+   <title>Gerenciador de Tarefas</title>
 </head>
 <body>
     <div class="container">
@@ -14,7 +32,7 @@
         </div>
         <div class="form">
             <form action="" method="get">
-                <label for="task_anem"></label>
+                <label for="task_name"></label>
                 <input type="text" name="task_name" placeholder="Nome da Tarefa">
                 <button type="submit">Cadastrar Tarefa</button>
             </form>
@@ -22,10 +40,22 @@
             <div class="separator">
             </div>
             <div class="list-tasks">
-            <ul>
-                <li>Tarefa 1</li>
-            </ul>
+            <?php
+                if(isset($_SESSION["tasks"])){
+                    echo "<ul>";
+                foreach($_SESSION["tasks"] as $key => $value){
+                    echo "<li>$value<li>";
+                }
+                echo "</ul>";
+                }
+                
+            ?>
+        <form action="" method="get">
+            <input type="hidden" name="clear" value="clear">
+            <button type="submit" class="btn-clear">Apagar Tarefa</button>
+        </form>
         </div>
+        
         <div class="footer">
             <p>Desenvolvido por Andreas Zapalá</p>
         </div>

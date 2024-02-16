@@ -66,6 +66,18 @@ body{
 .form button:hover{
     background: #CE93DB;
 }
+.btn-clear{
+    background: #EF5350;
+    height: 32px;
+    border: none;
+    color: #fff;
+    padding: 0 12px;
+    transition: background 1s;
+}
+
+.btn-clear:hover{
+    background: #EF9A9A;
+}
 .separator{
     background: #5b5656;
     height: 5px;
